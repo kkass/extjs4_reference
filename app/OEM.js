@@ -17,6 +17,7 @@ Ext.define('WebUI.OEM.Header',{
   items: [{
     xtype: 'container',
     flex: 10,
+    loadMask: false,
     html: '<div class="logo">&nbsp;</div>'
   },{
     xtype: 'container',

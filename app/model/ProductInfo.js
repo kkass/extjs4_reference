@@ -11,6 +11,7 @@ Ext.define('WebUI.model.ProductInfo', {
     {name: 'companyUrl'},
     {name: 'model'},
     {name: 'modelDescription'},
+    {name: 'systemDescription'},
     {name: 'serialNumber'},
     {name: 'version'},
     {name: 'utcTime'},

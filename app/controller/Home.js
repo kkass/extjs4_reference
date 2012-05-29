@@ -9,6 +9,9 @@ Ext.define('WebUI.controller.Home', {
     this.control({
       'home': {
         beforeshow: this.refresh
+      },
+      'home button[action=refresh]': {
+        click: this.refresh
       }
     });
     

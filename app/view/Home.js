@@ -29,7 +29,7 @@ Ext.define('WebUI.view.Home',{
         '<table class="infoTable x-panel-body">',
         '<tr><td class="label">Model:</td><td class="value">{model}</td></tr>',
         '<tr><td class="label">Model Description:</td><td class="value">{modelDescription}</td></tr>',
-        '<tr><td class="label">System Description:</td><td class="value"></td></tr>',
+        '<tr><td class="label">System Description:</td><td class="value">{systemDescription}</td></tr>',
         '<tr><td class="label">{buildType} Version:</td><td class="value">{version}</td></tr>',
         '<tr><td class="label">Release Date:</td><td class="value">{buildDate}</td></tr>',
         '<tr><td class="label">UTC Time:</td><td class="value">{utcTime}</td></tr>',
@@ -76,4 +76,13 @@ Ext.define('WebUI.view.Home',{
   
     }],
   }],
+  
+  tbar: [
+    '->',{
+      xtype:   'button',
+      action:  'refresh',
+      tooltip: 'Refresh',
+      iconCls: 'icon-refresh'
+    }
+  ]
 });
