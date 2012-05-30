@@ -1,6 +1,7 @@
 Ext.require([
   'Ext.window.MessageBox',
-  'Ext.Ajax'
+  'Ext.Ajax',
+  'Ext.util.Cookies'
 ]);
 
 Ext.define("WebUI.controller.NavController",{
@@ -12,6 +13,7 @@ Ext.define("WebUI.controller.NavController",{
     'layout.Content',
     'layout.Footer',
     'layout.Header',
+    'LoginPopup',
     
     // the error panel
     'ContentError'
@@ -56,6 +58,15 @@ Ext.define("WebUI.controller.NavController",{
       },
       'layout-content button[action=logout]': {
         click: this.onLogout
+      },
+      'layout-content button[action=login]': {
+        click: this.showLoginPopup
+      },
+      'login-popup button[action=save]': {
+        click: this.onLogin
+      },
+      'login-popup button[action=close]': {
+        click: this.closeEditor
       }
     });
   },
@@ -152,5 +163,38 @@ Ext.define("WebUI.controller.NavController",{
   },
   
   onLogout: function(button){
+    Ext.Ajax.request({
+      url: '/rest/login',
+      method: 'DELETE',
+      jsonData: {}
+    })
+    Ext.util.Cookies.clear('AuthToken');
+  },
+  
+  showLoginPopup: function(button){
+    Ext.widget('login-popup');
+  },
+  
+  onLogin: function(button){
+    var win    = button.up('window'),
+        form   = win.down('form').getValues();
+
+    win.close();
+    Ext.Ajax.request({
+      url: '/rest/login',
+      method: 'POST',
+      jsonData: {
+        username: form['username'],
+        password: form['password']
+      },
+      success: function(response){
+        // Get the response and save it in the cookie
+        var data = Ext.decode(response.responseText);
+        Ext.util.Cookies.set('AuthToken', data.AuthToken);
+      }
+    })
+  },
+  closeEditor: function(button){
+    button.up('window').close();
   }
 });

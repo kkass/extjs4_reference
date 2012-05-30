@@ -2,12 +2,6 @@ Ext.define('WebUI.view.layout.Content',{
   extend: 'Ext.panel.Panel',
   alias: 'widget.layout-content',
   
-  // requires: [
-  //   'WebUI.view.interface.Ethernet',
-  //   'WebUI.store.Ethernets',
-  //   'WebUI.view.interface.Ip'
-  // ],
-  
   layout: 'card',
   border: false,
   
@@ -31,9 +25,13 @@ Ext.define('WebUI.view.layout.Content',{
     iconCls: 'icon-reboot'
   },{
     xtype:   'button',
+    action:  'login',
+    tooltip: 'Login',
+    iconCls: 'icon-add'
+  },{
+    xtype:   'button',
     action:  'logout',
     tooltip: 'Logout',
-    iconCls: 'icon-logout',
-    disabled: true
+    iconCls: 'icon-logout'
   }]
 });
